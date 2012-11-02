@@ -24,16 +24,19 @@ function [ probd1, probd2 ] = mogClassification(p2,mu2,vary2,p3,mu3,vary3,x)
 
 %feed the test image into model for digit2 and digit 3 seperately and
 %obtain the log likelihood
-[unnormalizedLog2] = mogLogProb(p2,mu2,vary2,x);
-[unnormalizedLog3] = mogLogProb(p3,mu3,vary3,x);
+% [unnormalizedLog2] = mogLogProb(p2,mu2,vary2,x);
+% [unnormalizedLog3] = mogLogProb(p3,mu3,vary3,x);
+% 
+% %nomalize each log likelihood
+% [normalizedLog2,L2] = normalizeLogspace(unnormalizedLog2);
+% [normalizedLog3,L3] = normalizeLogspace(unnormalizedLog3);
+% 
+% %take the exponential
+% probd1(1,:) = exp(normalizedLog2(1,:));
+% probd2(1,:) = exp(normalizedLog3(1,:));
 
-%nomalize each log likelihood
-[normalizedLog2,L2] = normalizeLogspace(unnormalizedLog2);
-[normalizedLog3,L3] = normalizeLogspace(unnormalizedLog3);
-
-%take the exponential
-probd1(1,:) = exp(normalizedLog2(1,:));
-probd2(1,:) = exp(normalizedLog3(1,:));
+[probd1] = mogLogProb(p2,mu2,vary2,x);
+[probd2] = mogLogProb(p3,mu3,vary3,x);
 
 end
 
